@@ -22,6 +22,6 @@ jobs:
       CI_SHA: ${{ github.sha }}
     steps:
       - name: Run source-free policy checks
-        uses: keeldock-platform/platform-ci/kit/bootstrap@2c41868bf933a723836309a26a18358f34f5e7de
+        uses: keeldock-platform/platform-ci/kit/bootstrap@64f92d9938c419c7298c197806ab4731869494ed
         with:
           pool: workspace
