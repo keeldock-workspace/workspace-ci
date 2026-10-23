@@ -1,0 +1,27 @@
+name: public-policy
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  policy:
+    name: policy-${{ matrix.runner }}
+    strategy:
+      fail-fast: true
+      matrix:
+        runner:
+          - ubuntu-24.04
+          - macos-15
+          - windows-2025
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 10
+    env:
+      CI_SHA: ${{ github.sha }}
+    steps:
+      - name: Run source-free policy checks
+        uses: keeldock-platform/platform-ci/kit/bootstrap@d50cec024e05593b14ed47f8f6ce420a07911408
+        with:
+          pool: workspace
